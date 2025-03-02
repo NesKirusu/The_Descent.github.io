@@ -83,7 +83,7 @@ body{
     grid-template-rows: 500px auto;
 }
 .hero .wrapper .top__img{
-    overflow-x: hidden;
+    overflow: hidden;
     background-image: url(img/hero__img1.png);
     background-position: bottom;
     background-size: cover;
