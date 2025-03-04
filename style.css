@@ -10,6 +10,7 @@
 *::after,
 *::before{
     box-sizing: border-box;
+    outline: 1px solid red;
 }
 body{
     margin: 0 auto;
@@ -23,6 +24,7 @@ body{
     grid-template-areas:
     "hero hero hero hero hero"
     "hydro hydro hydro hydro hydro"
+    "carousel carousel carousel carousel carousel"
     ;
 }
 .navigation__bar{
@@ -92,6 +94,7 @@ body{
     z-index: 1000;
 }
 .hero .wrapper .top__img h1{
+    overflow: hidden;
     position: relative;
     height: 100%;
     font-size: 50px;
@@ -100,6 +103,10 @@ body{
     align-content: center;
     animation: opacity 1s both;
     animation-timeline: view(100% 20%);
+
+    @media (max-width: 768px){
+        padding-top: 120px;
+    }
 }
 @keyframes opacity {
     from{
@@ -109,15 +116,17 @@ body{
         filter: blur(0px);
     }
 }
-.hero .wrapper .top__img P{
-    position: relative;
+.hero .wrapper .top__img p{
+    overflow: hidden;
+    position: absolute;
     padding: 0;
     margin: 0;
     font-size: 100px;
     color: #FF6F61;
 }
 .hero .wrapper .top__img .hydroflask__img{
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
     position: absolute;
     content: "";
     width: 100%;
@@ -156,20 +165,21 @@ body{
     grid-area: hydro;
     display: flex;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background: #011F4B;
 }
 .hydro .wrapper{
     display: grid;
     width: 100%;
     height: 100vh;
-    grid-template-columns: 500px repeat(2, 1fr);
+    grid-template-columns: 1fr repeat(2, 1fr);
     grid-template-areas: 
     ". content content"
     ;
 }
 .hydro .wrapper .content{
     grid-area: content;
+    position: relative;
     display: flex;
     width: 100%;
     height: 100%;
@@ -177,8 +187,6 @@ body{
 }
 .hydro .wrapper .content .desc button{
     position: absolute;
-    bottom: 0;
-    right: 0;
     margin-right: 100px;
     height: 80px;
     width: 240px;
@@ -199,17 +207,25 @@ body{
     padding: 0;
     margin: 100px 10px 0px 10px;
     text-align: left;
+    
+    @media (max-width: 768px){
+        font-size: 50px;
+    }
 }
 .hydro .wrapper .content .desc{
     position: relative;
+    width: 100%;
     margin-top: -50px;
 }
 .hydro .wrapper .content .desc h1{
+    width: 90%;
     color: #FF6F61;
-    font-size: 50px;
+    font-size: 40px;
+    text-wrap: wrap;
 }
 .hydro .wrapper .content .desc ul{
     text-decoration: none;
+    width: 90%;
     color: #F1F6F9;
     font-size: 30px;
 }
@@ -239,4 +255,73 @@ body{
         transform: scale(0);
         filter: blur(40px);
     }
+}
+.container{
+    grid-area: carousel;
+    overflow-x: visible;
+    display: flex;
+    width: 100vw;
+    height: 100%;
+}
+.container .item_carousel{
+    overflow-x: visible;
+    display: grid;
+    width: 150vw;
+    height: 80vh;
+    gap: 10px;
+    padding: 100px 10px 10px 10px;
+    grid-template-columns: repeat(auto, 600px);
+    grid-template-areas: 
+    ". item1 item2 item3 item3"
+    ;
+    @media (max-width: 768px) {
+        margin-top: 120px;
+        padding: 100px 10px 0px 10px;
+        grid-template-areas:
+        "item1"
+        "item2"
+        "item3"
+        ;
+    }
+}
+.container .item_carousel .box1{
+    grid-area: item1;
+    display: block;
+    width: 100%;
+    background-image: url(img/hydroflask1.png);
+    background-position: center;
+    background-size: contain;
+    object-fit:contain;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+
+}
+.container .item_carousel .box2{
+    grid-area: item2;
+    display: flex;
+    width: 100%;
+    background-image: url(img/hydroflask2.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+}
+.container .item_carousel .box3{
+    grid-area: item3;
+    display: flex;
+    width: 100%;
+    background-image: url(img/hydroflask3.png);
+    background-position: center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
 }
