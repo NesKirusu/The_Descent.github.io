@@ -7,3 +7,6 @@ figma: https://www.figma.com/design/85z6JEBidFAhPmwR7xAlXe/THE-DESCENT-WEBPAGE?n
 svg to css: https://www.svgbackgrounds.com/tools/svg-to-css/?utm_source=youtube&utm_medium=video&utm_campaign=svg2css
 
 svg backgrounds: https://www.svgbackgrounds.com/
+
+other tools:
+https://css-generators.com/
