@@ -1,32 +1,67 @@
-var text_margintop = document.getElementById('text_margintop')
-window.addEventListener('scroll', ()=>{
-    let value = window.scrollY
-    let hydroflask_img = document.getElementById('hydroflask')
-    let screen_width = window.innerWidth
-    let screen_height = window.innerHeight
-    text_margintop.style.marginTop = value*1.2 +'px'
-    console.log(value)
-    if(value < 450){
-        gsap.to(hydroflask_img, {
-            x:0,
-            y:0,
-            opacity: 1,
-            rotation:0
-        })
-    }
-    if(value > 450 && value < 1040){
-        gsap.to(hydroflask_img, {
-            x:screen_width*-0.6,
-            y:850,
-            rotation:-20,
-            duration:0.5,
-            opacity: 1
-        })
-    }
-})
-
 document.addEventListener("DOMContentLoaded", (event) => {
-    let value = window.scrollY
-    let hydroflask_img = document.getElementById('hydroflask')
-    
+    gsap.registerPlugin(ScrollTrigger)
+    let loop = gsap.timeline({repeat: -1, yoyo: false})
+    loop.to(".hydroflask__img", {
+        yPercent: 5,
+        duration: 2,
+        ease: "power1.inOut"
     })
+    loop.to(".hydroflask__img", {
+        yPercent: 0,
+        duration: 2,
+        ease: "power1.inOut"
+    })
+    let tl = gsap.timeline()
+    tl.to(".hydroflask__img",{
+        y:"100vh",
+        x:"-55vw",
+        rotation: "-10deg",
+        duration: 1,
+        ease:"none",
+        scrollTrigger:{
+            trigger: ".hydro",
+            start: "top center",
+            end: "center bottom",
+            scrub: 6,
+            markers: 1,
+            onStart: () =>{
+                loop.pause()
+            },
+            onComplete: () =>{
+                loop.play()
+            }
+        }
+    })
+    tl.to(".shadow",{
+        y:"100vh",
+        x:"-55vw",
+        duration: 1,
+        ease:"none",
+        scrollTrigger:{
+            trigger: ".hydro",
+            start: "top center",
+            end: "center bottom",
+            scrub: 6,
+            markers: 1,
+            onStart: () =>{
+                loop.pause()
+            },
+            onComplete: () =>{
+                loop.play()
+            }
+        }
+    })
+    tl.from(".bluranimation",{
+        scale: 0,
+        filter: "blur(20px)",
+        stagger: 1,
+        duration: 5,
+        scrollTrigger:{
+            trigger: ".hydro",
+            start: "+=200px center",
+            end: "center bottom",
+            scrub: 5,
+            markers: 1
+        }
+    }, "<0.5")
+})
