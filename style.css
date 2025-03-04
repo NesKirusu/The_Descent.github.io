@@ -4,7 +4,6 @@
 }
 :root{
     font-family: metrophobic, sans-serif;
-    overflow-x: hidden;
 }
 *,
 *::after,
@@ -105,7 +104,7 @@ body{
     animation-timeline: view(100% 20%);
 
     @media (max-width: 768px){
-        padding-top: 120px;
+        padding-bottom: 100px;
     }
 }
 @keyframes opacity {
@@ -164,7 +163,7 @@ body{
 .hydro{
     grid-area: hydro;
     display: flex;
-    width: 100%;
+    width: 100vw;
     height: 100%;
     background: #011F4B;
 }
@@ -203,6 +202,7 @@ body{
 .hydro .wrapper .content h1{
     color: #F1F6F9;
     font-size: 70px;
+    width: 0%;
     font-weight: 5;
     padding: 0;
     margin: 100px 10px 0px 10px;
@@ -258,25 +258,28 @@ body{
 }
 .container{
     grid-area: carousel;
-    overflow-x: visible;
     display: flex;
     width: 100vw;
     height: 100%;
 }
 .container .item_carousel{
-    overflow-x: visible;
+    overflow: auto;
     display: grid;
-    width: 150vw;
+    margin: 0 auto;
+    width: 100%;
     height: 80vh;
     gap: 10px;
-    padding: 100px 10px 10px 10px;
-    grid-template-columns: repeat(auto, 600px);
+    margin-top: 100px;
+    padding: 10px 10px 10px 10px;
+    grid-template-columns: repeat(auto, 1fr);
     grid-template-areas: 
     ". item1 item2 item3 item3"
     ;
     @media (max-width: 768px) {
+        overflow: hidden;
         margin-top: 120px;
         padding: 100px 10px 0px 10px;
+        grid-template-rows: repeat(auto, 100%);
         grid-template-areas:
         "item1"
         "item2"
@@ -284,44 +287,26 @@ body{
         ;
     }
 }
-.container .item_carousel .box1{
+.container .item_carousel .box{
+    width: 900px;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    @media (max-width: 768px){
+        width: 100%;
+    }
+}
+.container .item_carousel .box:nth-child(1){
     grid-area: item1;
-    display: block;
-    width: 100%;
     background-image: url(img/hydroflask1.png);
-    background-position: center;
-    background-size: contain;
-    object-fit:contain;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 20px;
-
+    
 }
-.container .item_carousel .box2{
+.container .item_carousel .box:nth-child(2){
     grid-area: item2;
-    display: flex;
-    width: 100%;
     background-image: url(img/hydroflask2.png);
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 20px;
 }
-.container .item_carousel .box3{
+.container .item_carousel .box:nth-child(3){
     grid-area: item3;
-    display: flex;
-    width: 100%;
     background-image: url(img/hydroflask3.png);
-    background-position: center;
-    background-size: 60%;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 20px;
 }
